@@ -34,7 +34,7 @@ struct GameView: View {
                             .onTapGesture {
                                 viewModel.flip(cardID: cardData.id)
                             }
-                            .padding(5)
+                            .padding(2)
                     }
                 }
             }
@@ -47,6 +47,9 @@ struct GameView: View {
                 CardView(card: cardData, width: deckCardWidth)
                     .matchedGeometryEffect(id: cardData.id, in: cardsNameSpace)
                     .transition(AnyTransition.opacity)
+                    .offset(x: xOffset(for: cardData))
+                    .offset(y: yOffset(for: cardData))
+                    .rotationEffect(Angle(degrees: rotationOffset(for: cardData)))
             }
         }
     }
@@ -89,6 +92,51 @@ struct GameView: View {
         }
         
         return Animation.easeInOut(duration: dealDuration).delay(delay)
+    }
+    
+    private func xOffset(for card: CardModel) -> CGFloat {
+        var offset: CGFloat = 0
+        
+        if let cardIndex = viewModel.allCards.firstIndex(where: { $0.id == card.id }) {
+            switch true {
+            case (cardIndex % 3) == 2:  offset = 20
+            case (cardIndex % 3) == 1:  offset = -20
+            case (cardIndex % 3) == 0:  offset = 0
+            default: offset = 0
+            }
+        }
+        
+        return offset
+    }
+    
+    private func yOffset(for card: CardModel) -> CGFloat {
+        var offset: CGFloat = 0
+        
+        if let cardIndex = viewModel.allCards.firstIndex(where: { $0.id == card.id }) {
+            switch true {
+            case (cardIndex % 3) == 2:  offset = -5
+            case (cardIndex % 3) == 1:  offset = -5
+            case (cardIndex % 3) == 0:  offset = 0
+            default: offset = 0
+            }
+        }
+        
+        return offset
+    }
+    
+    private func rotationOffset(for card: CardModel) -> CGFloat {
+        var offset: CGFloat = 0
+        
+        if let cardIndex = viewModel.allCards.firstIndex(where: { $0.id == card.id }) {
+            switch true {
+            case (cardIndex % 3) == 2:  offset = 20
+            case (cardIndex % 3) == 1:  offset = -20
+            case (cardIndex % 3) == 0:  offset = 0
+            default: offset = 0
+            }
+        }
+        
+        return offset
     }
     
     private let totalDealDuration: Double = 2
