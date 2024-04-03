@@ -13,6 +13,7 @@ import SwiftUI
 
 struct CardView: View {
     let card: CardModel
+    let width: CGFloat
     
     @State private var frontDegrees: Double = 0.0
     @State private var backDegrees: Double = 0.0
@@ -22,6 +23,7 @@ struct CardView: View {
             faceUpView
             faceDownView
         }
+        .frame(maxWidth: width)
         .onChange(of: card.isFaceUp, perform: flipCardAnimation(_:))
         .onAppear { calculateInitialDegrees() }
     }
@@ -34,11 +36,11 @@ struct CardView: View {
                 .strokeBorder(lineWidth: strokeWidth)
                 .foregroundStyle(Color.gray)
         }
-            .aspectRatio(aspectRatio, contentMode: .fit)
-            .rotation3DEffect(
-                Angle(degrees: backDegrees),
-                axis: (x: 0.0, y: 1.0, z: 0.0)
-            )
+        .aspectRatio(aspectRatio, contentMode: .fit)
+        .rotation3DEffect(
+            Angle(degrees: backDegrees),
+            axis: (x: 0.0, y: 1.0, z: 0.0)
+        )
     }
     
     private var faceUpView: some View {
@@ -55,24 +57,22 @@ struct CardView: View {
     }
     
     private var symbolOverlay: some View {
-        GeometryReader { proxy in
-            Rectangle()
-                .opacity(0)
-                .overlay {
-                    Image(systemName: card.symbolName)
-                        .resizable()
-                        .scaledToFit()
-                }
-                .padding(proxy.size.width / paddingFactor)
-        }
+        Rectangle()
+            .opacity(0)
+            .overlay {
+                Image(systemName: card.symbolName)
+                    .resizable()
+                    .scaledToFit()
+            }
+            .padding(width / paddingFactor)
     }
     
-    private let cornerRadius: CGFloat = 25.0
+    private var cornerRadius: CGFloat { width / 5 }
     private let aspectRatio: CGFloat = 1/1
     private let strokeWidth: CGFloat = 1.0
     private let backgroundColor = Color.gray.opacity(0.15)
     private let paddingFactor: CGFloat = 5
-    private let animationDuration: CGFloat = 1
+    private let animationDuration: CGFloat = 0.15
 }
 
 private extension CardView {
@@ -125,8 +125,8 @@ private extension CardView {
         
         var body: some View {
             VStack(spacing: 80) {
-                ForEach(viewModel.cards) { cardData in
-                    CardView(card: cardData)
+                ForEach(viewModel.dealtCards) { cardData in
+                    CardView(card: cardData, width: 150)
                         .onTapGesture {
                             viewModel.flip(cardID: cardData.id)
                         }
