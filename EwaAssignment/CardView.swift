@@ -120,11 +120,21 @@ private extension CardView {
 }
 
 #Preview("4 cards") {
-    var model_1 = CardModel(symbol: .beats, isFaceUp: true)
-    var model_2 = CardModel(symbol: .beats, isFaceUp: false)
-    
-    return VStack {
-        CardView(card: model_1)
-        CardView(card: model_2)
+    struct PreviewData: View {
+        @StateObject var viewModel = GameViewModel(cardCount: 2)
+        
+        var body: some View {
+            VStack(spacing: 80) {
+                ForEach(viewModel.cards) { cardData in
+                    CardView(card: cardData)
+                        .onTapGesture {
+                            viewModel.flip(cardID: cardData.id)
+                        }
+                }
+            }.padding(.horizontal, 90)
+        }
     }
+    
+    let preview = PreviewData()
+    return preview
 }
