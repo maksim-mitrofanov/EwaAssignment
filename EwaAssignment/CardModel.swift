@@ -15,5 +15,12 @@ struct CardModel: Identifiable {
 }
 
 extension CardModel {
-    static var templates = CardSymbol.allCases.map { CardModel(symbolName: $0.rawValue, isFaceUp: true) }.shuffled()
+    init(symbol: Symbol, isFaceUp: Bool = true) {
+        self.symbolName = symbol.rawValue
+        self.isFaceUp = isFaceUp
+    }
+}
+
+extension CardModel {
+    static var templates = Symbol.allCases.map { CardModel(symbolName: $0.rawValue, isFaceUp: true) }.shuffled()
 }

@@ -59,13 +59,13 @@
 		B598E0392BBC5A9000DF10EC /* EwaAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				B5A930872BBD777600888073 /* CardView.swift */,
 				B54009E62BBD720900563279 /* CardModel.swift */,
 				B54009EB2BBD74AF00563279 /* CardSymbols.swift */,
 				B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */,
 				B598E03C2BBC5A9000DF10EC /* ContentView.swift */,
 				B598E03E2BBC5A9000DF10EC /* Assets.xcassets */,
 				B598E0402BBC5A9000DF10EC /* Preview Content */,
-				B5A930872BBD777600888073 /* CardView.swift */,
 			);
 			path = EwaAssignment;
 			sourceTree = "<group>";

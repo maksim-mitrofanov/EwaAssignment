@@ -9,7 +9,7 @@ import SwiftUI
 import SFSymbolsMacro
 
 @SFSymbol
-enum CardSymbol: String, CaseIterable {
+enum Symbol: String, CaseIterable {
     case docquestion = "doc.questionmark"
     case bookPages = "book.pages"
     case terminal = "apple.terminal.on.rectangle"
