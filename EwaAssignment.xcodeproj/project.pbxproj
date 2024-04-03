@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B54009E72BBD720900563279 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009E62BBD720900563279 /* CardModel.swift */; };
+		B54009EA2BBD743800563279 /* SFSymbolsMacro in Frameworks */ = {isa = PBXBuildFile; productRef = B54009E92BBD743800563279 /* SFSymbolsMacro */; };
+		B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009EB2BBD74AF00563279 /* CardSymbols.swift */; };
 		B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */; };
 		B598E03D2BBC5A9000DF10EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03C2BBC5A9000DF10EC /* ContentView.swift */; };
 		B598E03F2BBC5A9000DF10EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E03E2BBC5A9000DF10EC /* Assets.xcassets */; };
 		B598E0422BBC5A9000DF10EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E0412BBC5A9000DF10EC /* Preview Assets.xcassets */; };
+		B5A930882BBD777600888073 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A930872BBD777600888073 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B54009E62BBD720900563279 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		B54009EB2BBD74AF00563279 /* CardSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSymbols.swift; sourceTree = "<group>"; };
 		B598E0372BBC5A9000DF10EC /* EwaAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EwaAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwaAssignmentApp.swift; sourceTree = "<group>"; };
 		B598E03C2BBC5A9000DF10EC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B598E03E2BBC5A9000DF10EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B598E0412BBC5A9000DF10EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5A930872BBD777600888073 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54009EA2BBD743800563279 /* SFSymbolsMacro in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +59,13 @@
 		B598E0392BBC5A9000DF10EC /* EwaAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				B54009E62BBD720900563279 /* CardModel.swift */,
+				B54009EB2BBD74AF00563279 /* CardSymbols.swift */,
 				B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */,
 				B598E03C2BBC5A9000DF10EC /* ContentView.swift */,
 				B598E03E2BBC5A9000DF10EC /* Assets.xcassets */,
 				B598E0402BBC5A9000DF10EC /* Preview Content */,
+				B5A930872BBD777600888073 /* CardView.swift */,
 			);
 			path = EwaAssignment;
 			sourceTree = "<group>";
@@ -83,6 +94,9 @@
 			dependencies = (
 			);
 			name = EwaAssignment;
+			packageProductDependencies = (
+				B54009E92BBD743800563279 /* SFSymbolsMacro */,
+			);
 			productName = EwaAssignment;
 			productReference = B598E0372BBC5A9000DF10EC /* EwaAssignment.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +125,9 @@
 				Base,
 			);
 			mainGroup = B598E02E2BBC5A8F00DF10EC;
+			packageReferences = (
+				B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */,
+			);
 			productRefGroup = B598E0382BBC5A9000DF10EC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +156,9 @@
 			files = (
 				B598E03D2BBC5A9000DF10EC /* ContentView.swift in Sources */,
 				B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */,
+				B54009E72BBD720900563279 /* CardModel.swift in Sources */,
+				B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */,
+				B5A930882BBD777600888073 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/SFSymbolsMacro.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B54009E92BBD743800563279 /* SFSymbolsMacro */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */;
+			productName = SFSymbolsMacro;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B598E02F2BBC5A8F00DF10EC /* Project object */;
 }
