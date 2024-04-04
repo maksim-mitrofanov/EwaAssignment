@@ -43,6 +43,16 @@ struct CardView: View {
         )
     }
     
+    private var matchOverlay: some View {
+        VStack {
+            if card.isMatched {
+                baseShape
+                    .strokeBorder(lineWidth: strokeWidth)
+                    .foregroundStyle(Color.green)
+            }
+        }
+    }
+    
     private var faceUpView: some View {
         ZStack {
             baseShape
@@ -53,6 +63,7 @@ struct CardView: View {
                     Angle(degrees: frontDegrees),
                     axis: (x: 0.0, y: 1.0, z: 0.0)
                 )
+                .overlay { matchOverlay }
         }
     }
     

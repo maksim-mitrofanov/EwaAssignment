@@ -19,45 +19,38 @@ struct GameView: View {
         VStack {
             gameStateView()
             cardsGridView
-                .disabled(!canInteractWithCardsGrid)
             undealtCardsView
             buttonsView
         }
         .padding(.horizontal)
         .padding(.top, 100)
         .onChange(of: undealtCardIDs.count) { shuffleDealtCards() }
-        .onChange(of: viewModel.gameState) { prepareForNextFlip() }
         .onAppear { startNewGame() }
-    }
-    
-    var canInteractWithCardsGrid: Bool {
-        switch viewModel.gameState {
-        case .match:
-            return false
-        case .miss:
-            return false
-        default:
-            return true
-        }
     }
     
     @ViewBuilder
     private func gameStateView() -> some View {
-        switch viewModel.gameState {
-        case .match:
-            Text("Match")
-                .foregroundStyle(Color.green)
-                .bold()
-        case .miss:
-            Text("Miss")
-                .foregroundStyle(Color.red)
-                .bold()
-        case .standard:
-            Text("Choose card")
-                .foregroundStyle(Color.gray)
-                .bold()
-        default: Text("")
+        VStack {
+            switch viewModel.gameState {
+            case .match:
+                Text("Match")
+                    .foregroundStyle(Color.green)
+            case .miss:
+                Text("Miss")
+                    .foregroundStyle(Color.red)
+            case .noSelection:
+                Text("No selection")
+                    .foregroundStyle(Color.gray)
+            case .oneCardFaceUp:
+                Text("One card face up")
+                    .foregroundStyle(Color.blue)
+            case .twoCardsFaceUp:
+                Text("Two cards face up")
+                    .foregroundStyle(Color.orange)
+            }
         }
+        .foregroundStyle(Color.gray)
+        .bold()
     }
     
     private func prepareForNextFlip() {
