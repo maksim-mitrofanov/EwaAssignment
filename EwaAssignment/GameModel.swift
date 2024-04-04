@@ -5,10 +5,10 @@
 //  Created by  Maksim on 03.04.24.
 //
 
-import Foundation
+import SwiftUI
 
-struct GameModel {
-    private(set) var state: State {
+struct GameModel: CardGameModel {
+    private(set) var state: GameState {
         didSet {
             stateChanged()
         }
@@ -27,7 +27,7 @@ struct GameModel {
         self.state = .noSelection
     }
     
-    mutating func receive(action: Action) {
+    mutating func receive(action: GameAction) {
         switch action {
         case .selectCard(let id):
             selectCard(id: id)
@@ -46,20 +46,6 @@ struct GameModel {
 }
 
 extension GameModel {
-    enum State: Equatable {
-        case noSelection
-        case oneCardFaceUp(index: Int)
-        case twoCardsFaceUp(card1Index: Int, card2Index: Int)
-        case match
-        case miss
-    }
-    
-    enum Action {
-        case selectCard(id: UUID)
-        case prepareForFlip
-        case shuffleCards
-    }
-    
     private mutating func stateChanged() {
         switch self.state {
         case .oneCardFaceUp(index: let index):

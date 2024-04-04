@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B5075C2C2BBF4CA10045F192 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B5075C2B2BBF4CA10045F192 /* ConfettiSwiftUI */; };
+		B5075C2E2BBF50480045F192 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5075C2D2BBF50480045F192 /* Protocols.swift */; };
 		B54009E72BBD720900563279 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009E62BBD720900563279 /* CardModel.swift */; };
 		B54009EA2BBD743800563279 /* SFSymbolsMacro in Frameworks */ = {isa = PBXBuildFile; productRef = B54009E92BBD743800563279 /* SFSymbolsMacro */; };
 		B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009EB2BBD74AF00563279 /* CardSymbols.swift */; };
@@ -16,11 +17,12 @@
 		B598E03F2BBC5A9000DF10EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E03E2BBC5A9000DF10EC /* Assets.xcassets */; };
 		B598E0422BBC5A9000DF10EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E0412BBC5A9000DF10EC /* Preview Assets.xcassets */; };
 		B5A930882BBD777600888073 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A930872BBD777600888073 /* CardView.swift */; };
-		B5A9308A2BBD8D9300888073 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A930892BBD8D9300888073 /* GameViewModel.swift */; };
+		B5A9308A2BBD8D9300888073 /* StandardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A930892BBD8D9300888073 /* StandardViewModel.swift */; };
 		B5A9308C2BBD915400888073 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9308B2BBD915400888073 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5075C2D2BBF50480045F192 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		B54009E62BBD720900563279 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		B54009EB2BBD74AF00563279 /* CardSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSymbols.swift; sourceTree = "<group>"; };
 		B598E0372BBC5A9000DF10EC /* EwaAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EwaAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,7 +31,7 @@
 		B598E03E2BBC5A9000DF10EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B598E0412BBC5A9000DF10EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5A930872BBD777600888073 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		B5A930892BBD8D9300888073 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		B5A930892BBD8D9300888073 /* StandardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewModel.swift; sourceTree = "<group>"; };
 		B5A9308B2BBD915400888073 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,13 +67,14 @@
 		B598E0392BBC5A9000DF10EC /* EwaAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				B5075C2D2BBF50480045F192 /* Protocols.swift */,
 				B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */,
 				B5A930872BBD777600888073 /* CardView.swift */,
 				B54009E62BBD720900563279 /* CardModel.swift */,
 				B54009EB2BBD74AF00563279 /* CardSymbols.swift */,
 				B598E03C2BBC5A9000DF10EC /* GameView.swift */,
 				B5A9308B2BBD915400888073 /* GameModel.swift */,
-				B5A930892BBD8D9300888073 /* GameViewModel.swift */,
+				B5A930892BBD8D9300888073 /* StandardViewModel.swift */,
 				B598E03E2BBC5A9000DF10EC /* Assets.xcassets */,
 				B598E0402BBC5A9000DF10EC /* Preview Content */,
 			);
@@ -164,13 +167,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5A9308A2BBD8D9300888073 /* GameViewModel.swift in Sources */,
+				B5A9308A2BBD8D9300888073 /* StandardViewModel.swift in Sources */,
 				B598E03D2BBC5A9000DF10EC /* GameView.swift in Sources */,
 				B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */,
 				B54009E72BBD720900563279 /* CardModel.swift in Sources */,
 				B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */,
 				B5A9308C2BBD915400888073 /* GameModel.swift in Sources */,
 				B5A930882BBD777600888073 /* CardView.swift in Sources */,
+				B5075C2E2BBF50480045F192 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

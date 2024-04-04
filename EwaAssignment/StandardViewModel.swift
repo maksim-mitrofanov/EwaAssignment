@@ -1,5 +1,5 @@
 //
-//  GameViewModel.swift
+//  StandardViewModel.swift
 //  EwaAssignment
 //
 //  Created by  Maksim on 03.04.24.
@@ -8,12 +8,12 @@
 import SwiftUI
 import Foundation
 
-class GameViewModel: ObservableObject {
+class StandardViewModel: CardGameViewModel, ObservableObject {
     @Published private var game: GameModel
     
     private let cardCount: Int
     
-    init(cardCount: Int) {
+    required init(cardCount: Int) {
         self.cardCount = cardCount
         self.game = GameModel(cardCount: cardCount)
     }
@@ -21,9 +21,9 @@ class GameViewModel: ObservableObject {
     func flip(cardID: UUID) {
         game.receive(action: .selectCard(id: cardID))
         
-        if gameState == .miss || gameState == .match {
+        if game.state == .miss || game.state == .match {
             Task {
-                try await Task.sleep(nanoseconds: 2_000_000_000)
+                try await Task.sleep(nanoseconds: delayForInteraction)
                 
                 await MainActor.run {
                     game.receive(action: .prepareForFlip)
@@ -49,7 +49,7 @@ class GameViewModel: ObservableObject {
     }
 }
 
-extension GameViewModel {
+extension StandardViewModel {
     var allCards: [CardModel] {
         game.cards
     }
@@ -58,11 +58,13 @@ extension GameViewModel {
         game.cards.count
     }
     
-    var gameState: GameModel.State {
+    var gameState: GameState {
         game.state
     }
     
     var unmatchedPairsCount: Int {
         game.cards.filter { $0.isMatched == false }.count / 2
     }
+    
+    private var delayForInteraction: UInt64 { 2_000_000_000 }
 }

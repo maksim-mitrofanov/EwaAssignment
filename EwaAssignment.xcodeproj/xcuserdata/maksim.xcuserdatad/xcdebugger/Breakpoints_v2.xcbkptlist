@@ -14,8 +14,8 @@
             filePath = "EwaAssignment/GameModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "selectCard(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "EwaAssignment/GameModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "stateChanged()"
             landmarkType = "7">
          </BreakpointContent>

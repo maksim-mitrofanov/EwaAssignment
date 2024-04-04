@@ -10,12 +10,16 @@ import ConfettiSwiftUI
 
 // TODO: Fix card Z Index.
 
-struct GameView: View {
-    @StateObject private var viewModel = GameViewModel(cardCount: 12)
+struct GameView<ViewModelType: CardGameViewModel>: View where ViewModelType: ObservableObject{
+    @ObservedObject var viewModel: ViewModelType
     
     @State private var undealtCardIDs = [UUID]()
     @State private var confettiCounter = 0
     @Namespace private var cardsNameSpace
+    
+    init(viewModel: ViewModelType) {
+        self.viewModel = viewModel
+    }
         
     var body: some View {
         VStack {
@@ -31,30 +35,11 @@ struct GameView: View {
         .confettiCannon(counter: $confettiCounter, repetitions: 3, repetitionInterval: 0.7)
     }
     
-    @ViewBuilder
     private func gameStateView() -> some View {
-        VStack {
-            switch viewModel.gameState {
-            case .match:
-                Text("Match")
-                    .foregroundStyle(Color.green)
-            case .miss:
-                Text("Miss")
-                    .foregroundStyle(Color.red)
-            case .noSelection:
-                Text("No selection")
-                    .foregroundStyle(Color.gray)
-            case .oneCardFaceUp:
-                Text("One card face up")
-                    .foregroundStyle(Color.blue)
-            case .twoCardsFaceUp:
-                Text("Two cards face up")
-                    .foregroundStyle(Color.orange)
-            }
-        }
-        .foregroundStyle(Color.gray)
-        .bold()
-        .opacity(hasFinishedGame ? 0 : 1)
+        Text(viewModel.gameState.description)
+            .bold()
+            .foregroundStyle(viewModel.gameState.color)
+            .opacity(hasFinishedGame ? 0 : 1)
     }
     
     private var undealtPairsCountView: some View {
@@ -69,20 +54,6 @@ struct GameView: View {
     private func showConfetti() {
         if hasFinishedGame {
             confettiCounter += 1
-        }
-    }
-    
-    private func prepareForNextFlip() {
-        if viewModel.gameState == .match || viewModel.gameState == .miss {
-            Task {
-                try await Task.sleep(nanoseconds: UInt64(2_000_000_000))
-                
-                await MainActor.run {
-                    withAnimation {
-                        viewModel.prepareForNextFlip()
-                    }
-                }
-            }
         }
     }
     
@@ -270,5 +241,5 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    GameView(viewModel: StandardViewModel(cardCount: 12))
 }
