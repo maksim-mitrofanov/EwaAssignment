@@ -20,6 +20,7 @@ struct GameView: View {
             gameStateView()
             cardsGridView
             undealtCardsView
+            undealtPairsCountView
             buttonsView
         }
         .padding(.horizontal)
@@ -51,6 +52,15 @@ struct GameView: View {
         }
         .foregroundStyle(Color.gray)
         .bold()
+    }
+    
+    private var undealtPairsCountView: some View {
+        VStack {
+            if undealtCards.count == 0 {
+                
+                Text("Осталось найти: \(viewModel.unmatchedPairsCount) пар карт.")
+            }
+        }
     }
     
     private func prepareForNextFlip() {
@@ -96,13 +106,15 @@ struct GameView: View {
                     .rotationEffect(Angle(degrees: rotationOffset(for: cardData)))
             }
         }
+        .padding(.bottom)
     }
     
     private var buttonsView: some View {
-        VStack {
+        HStack {
             dealCardsButton
             newGameButton
         }
+        .buttonStyle(.bordered)
     }
     
     private var newGameButton: some View {
@@ -120,7 +132,7 @@ struct GameView: View {
     
     private var dealCardsButton: some View {
         VStack {
-            if !viewModel.hasStartedGame {
+            if undealtCards.count > 0 {
                 Button("Раздать") {
                     for card in undealtCards {
                         withAnimation(dealAnimation(for: card)) {
@@ -131,7 +143,7 @@ struct GameView: View {
             }
         }
     }
-    
+        
     private var columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -203,49 +215,40 @@ struct GameView: View {
                     viewModel.startGame()
                 }
                 
-                try await Task.sleep(nanoseconds: shuffleDelay)
-                
-                await MainActor.run {
-                    withAnimation(.easeInOut(duration: shuffleDuration)) {
-                        viewModel.shuffle()
-                    }
-                }
-                
-                try await Task.sleep(nanoseconds: shuffleDelay)
-                
-                await MainActor.run {
-                    withAnimation(.easeInOut(duration: shuffleDuration)) {
-                        viewModel.shuffle()
-                    }
-                }
-                
-                try await Task.sleep(nanoseconds: shuffleDelay)
-                
-                await MainActor.run {
-                    withAnimation(.easeInOut(duration: shuffleDuration)) {
-                        viewModel.shuffle()
-                    }
+                for _ in 0..<shuffleCount {
+                    try await waitAndShuffleCards()
                 }
             }
         }
     }
     
-    func deal(cardID: UUID) {
+    private func waitAndShuffleCards() async throws {
+        try await Task.sleep(nanoseconds: shuffleDelay)
+        
+        await MainActor.run {
+            withAnimation(.easeInOut(duration: shuffleDuration)) {
+                viewModel.shuffle()
+            }
+        }
+    }
+    
+    private func deal(cardID: UUID) {
         undealtCardIDs.removeAll(where: { $0 == cardID })
     }
     
-    var dealtCards: [CardModel] {
+    private var dealtCards: [CardModel] {
         viewModel.allCards.filter { card in !undealtCardIDs.contains(where: { $0 == card.id })}
     }
     
-    var undealtCards: [CardModel] {
+    private var undealtCards: [CardModel] {
         viewModel.allCards.filter { card in undealtCardIDs.contains(where: { $0 == card.id })}
     }
     
     private let totalDealDuration: Double = 2
     private let dealDuration: Double = 0.5
     private let deckCardWidth: CGFloat = 50
-    private var shuffleDuration: CGFloat { 0.6 }
+    private let shuffleCount = 2
+    private var shuffleDuration: CGFloat = 0.6
     private var shuffleDelay: UInt64 { 500_000_000 }
 }
 

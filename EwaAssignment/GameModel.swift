@@ -33,11 +33,15 @@ struct GameModel {
             selectCard(id: id)
             
         case .prepareForFlip:
-            flipAllCards()
+            state = .noSelection
             
         case .shuffleCards:
             shuffleCards()
         }
+    }
+    
+    private var isDisabled: Bool {
+        state == .match || state == .miss
     }
 }
 
@@ -62,6 +66,9 @@ extension GameModel {
             cards[index].isFaceUp = true
             
         case .twoCardsFaceUp(card1Index: let index1, card2Index: let index2):
+            cards[index1].isFaceUp = true
+            cards[index2].isFaceUp = true
+            
             if cardsMatch(index1: index1, index2: index2) {
                 state = .match
                 cards[index1].isMatched = true
@@ -71,8 +78,11 @@ extension GameModel {
             }
             
         case .noSelection:
-            flipAllCards()
-            state = .noSelection
+            cards.indices.forEach {
+                if cards[$0].isMatched == false {
+                    cards[$0].isFaceUp = false
+                }
+            }
         
         default: break
         }
@@ -82,6 +92,7 @@ extension GameModel {
     
     mutating private func selectCard(id: UUID) {
         guard let selectedCardIndex = getIndex(for: id) else { return }
+        guard !isDisabled else { return }
         
         switch self.state {
         case .noSelection:
@@ -92,10 +103,8 @@ extension GameModel {
             let selectedCardID = cards[selectedCardIndex].id
             
             if faceUpCardID == selectedCardID {
-                cards[faceUpCardIndex].isFaceUp = false
                 state = .noSelection
             } else {
-                cards[selectedCardIndex].isFaceUp = true
                 state = .twoCardsFaceUp(card1Index: faceUpCardIndex, card2Index: selectedCardIndex)
             }
             
@@ -113,14 +122,6 @@ private extension GameModel {
         cards.firstIndex { $0.id == cardID }
     }
     
-    mutating func flipAllCards() {
-        cards.indices.forEach {
-            if cards[$0].isMatched == false {
-                cards[$0].isFaceUp = false
-            }
-        }
-    }
-    
     func cardsMatch(index1: Int, index2: Int) -> Bool {
         // matched cards don't match :)
         guard cards[index1].isMatched == false, cards[index1].isMatched == false
@@ -130,6 +131,6 @@ private extension GameModel {
     }
     
     mutating func shuffleCards() {
-//        cards.shuffle()
+        cards.shuffle()
     }
 }

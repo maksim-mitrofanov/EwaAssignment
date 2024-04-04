@@ -59,11 +59,11 @@ struct CardView: View {
                 .aspectRatio(aspectRatio, contentMode: .fit)
                 .foregroundStyle(backgroundColor)
                 .overlay { symbolOverlay }
+                .overlay { matchOverlay }
                 .rotation3DEffect(
                     Angle(degrees: frontDegrees),
                     axis: (x: 0.0, y: 1.0, z: 0.0)
                 )
-                .overlay { matchOverlay }
         }
     }
     

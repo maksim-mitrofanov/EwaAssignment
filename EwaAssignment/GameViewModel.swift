@@ -10,7 +10,6 @@ import Foundation
 
 class GameViewModel: ObservableObject {
     @Published private var game: GameModel
-    @Published private(set) var hasStartedGame: Bool = false
     
     private let cardCount: Int
     
@@ -22,7 +21,7 @@ class GameViewModel: ObservableObject {
     func flip(cardID: UUID) {
         game.receive(action: .selectCard(id: cardID))
         
-        if gameState == .miss {
+        if gameState == .miss || gameState == .match {
             Task {
                 try await Task.sleep(nanoseconds: 2_000_000_000)
                 
@@ -43,14 +42,10 @@ class GameViewModel: ObservableObject {
     
     func createNewGame() {
         game = GameModel(cardCount: totalCardCount)
-        hasStartedGame = false
     }
     
     func startGame() {
-        if !hasStartedGame {
-            game.receive(action: .prepareForFlip)
-            hasStartedGame = true
-        }
+        game.receive(action: .prepareForFlip)
     }
 }
 
@@ -65,5 +60,9 @@ extension GameViewModel {
     
     var gameState: GameModel.State {
         game.state
+    }
+    
+    var unmatchedPairsCount: Int {
+        game.cards.filter { $0.isMatched == false }.count / 2
     }
 }
