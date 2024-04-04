@@ -26,4 +26,12 @@ struct GameModel {
             cards[cardIndex].isFaceUp.toggle()
         }
     }
+    
+    mutating func startGame() {
+        cards.indices.forEach { cards[$0].isFaceUp = false }
+    }
+    
+    mutating func shuffleCards() {
+        cards.shuffle()
+    }
 }
