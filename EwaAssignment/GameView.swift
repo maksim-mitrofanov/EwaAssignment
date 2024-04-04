@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 // TODO: Fix card Z Index.
 
@@ -13,6 +14,7 @@ struct GameView: View {
     @StateObject private var viewModel = GameViewModel(cardCount: 12)
     
     @State private var undealtCardIDs = [UUID]()
+    @State private var confettiCounter = 0
     @Namespace private var cardsNameSpace
         
     var body: some View {
@@ -25,8 +27,8 @@ struct GameView: View {
         }
         .padding(.horizontal)
         .padding(.top, 100)
-        .onChange(of: undealtCardIDs.count) { shuffleDealtCards() }
         .onAppear { startNewGame() }
+        .confettiCannon(counter: $confettiCounter, repetitions: 3, repetitionInterval: 0.7)
     }
     
     @ViewBuilder
@@ -52,14 +54,21 @@ struct GameView: View {
         }
         .foregroundStyle(Color.gray)
         .bold()
+        .opacity(hasFinishedGame ? 0 : 1)
     }
     
     private var undealtPairsCountView: some View {
         VStack {
             if undealtCards.count == 0 {
-                
                 Text("Осталось найти: \(viewModel.unmatchedPairsCount) пар карт.")
             }
+        }
+        .opacity(hasFinishedGame ? 0 : 1)
+    }
+    
+    private func showConfetti() {
+        if hasFinishedGame {
+            confettiCounter += 1
         }
     }
     
@@ -93,6 +102,12 @@ struct GameView: View {
                 }
             }
         }
+        .opacity(hasFinishedGame ? 0.25 : 1)
+        .onChange(of: viewModel.unmatchedPairsCount) { showConfetti() }
+    }
+    
+    private var hasFinishedGame: Bool {
+        viewModel.unmatchedPairsCount == 0
     }
     
     private var undealtCardsView: some View {
@@ -139,6 +154,8 @@ struct GameView: View {
                             deal(cardID: card.id)
                         }
                     }
+                    
+                    shuffleDealtCards()
                 }
             }
         }

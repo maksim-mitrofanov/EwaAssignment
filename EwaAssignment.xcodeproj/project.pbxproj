@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5075C2C2BBF4CA10045F192 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B5075C2B2BBF4CA10045F192 /* ConfettiSwiftUI */; };
 		B54009E72BBD720900563279 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009E62BBD720900563279 /* CardModel.swift */; };
 		B54009EA2BBD743800563279 /* SFSymbolsMacro in Frameworks */ = {isa = PBXBuildFile; productRef = B54009E92BBD743800563279 /* SFSymbolsMacro */; };
 		B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009EB2BBD74AF00563279 /* CardSymbols.swift */; };
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5075C2C2BBF4CA10045F192 /* ConfettiSwiftUI in Frameworks */,
 				B54009EA2BBD743800563279 /* SFSymbolsMacro in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +104,7 @@
 			name = EwaAssignment;
 			packageProductDependencies = (
 				B54009E92BBD743800563279 /* SFSymbolsMacro */,
+				B5075C2B2BBF4CA10045F192 /* ConfettiSwiftUI */,
 			);
 			productName = EwaAssignment;
 			productReference = B598E0372BBC5A9000DF10EC /* EwaAssignment.app */;
@@ -133,6 +136,7 @@
 			mainGroup = B598E02E2BBC5A8F00DF10EC;
 			packageReferences = (
 				B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */,
+				B5075C2A2BBF4CA10045F192 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = B598E0382BBC5A9000DF10EC /* Products */;
 			projectDirPath = "";
@@ -374,6 +378,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B5075C2A2BBF4CA10045F192 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lukepistrol/SFSymbolsMacro.git";
@@ -385,6 +397,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B5075C2B2BBF4CA10045F192 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5075C2A2BBF4CA10045F192 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
 		B54009E92BBD743800563279 /* SFSymbolsMacro */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B54009E82BBD743800563279 /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */;
