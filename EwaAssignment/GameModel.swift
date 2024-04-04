@@ -21,9 +21,33 @@ struct GameModel {
         self.cards = cardModels
     }
     
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? = nil
+    
     mutating func flip(cardID: UUID) {
-        if let cardIndex = cards.firstIndex(where: { $0.id == cardID }) {
-            cards[cardIndex].isFaceUp.toggle()
+        
+        // Has no face up cards
+        if indexOfTheOneAndOnlyFaceUpCard == .none {
+            if let cardIndex = cards.firstIndex(where: { $0.id == cardID }) {
+                cards[cardIndex].isFaceUp.toggle()
+                indexOfTheOneAndOnlyFaceUpCard = cardIndex
+            }
+        }
+        
+        // Has one face up card
+        else {
+            if let cardIndex = cards.firstIndex(where: { $0.id == cardID }) {
+                cards[cardIndex].isFaceUp.toggle()
+                
+                let faceUpCardIndicies = cards.indices.filter { cards[$0].isFaceUp == true }
+                let firstFaceUpCard = cards[faceUpCardIndicies[0]]
+                let secondFaceUpCard = cards[faceUpCardIndicies[1]]
+                
+                if firstFaceUpCard.symbolName == secondFaceUpCard.symbolName {
+                    
+                } else {
+                    
+                }
+            }
         }
     }
     

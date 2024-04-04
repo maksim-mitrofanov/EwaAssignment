@@ -11,6 +11,8 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var viewModel = GameViewModel(cardCount: 12)
+    
+    @State private var undealtCardIDs = [UUID]()
     @Namespace private var cardsNameSpace
         
     var body: some View {
@@ -21,13 +23,14 @@ struct GameView: View {
         }
         .padding(.horizontal)
         .padding(.top, 100)
+        .onChange(of: undealtCardIDs.count) { shuffleDealtCards() }
     }
     
     private var cardsGridView: some View {
         VStack {
             GeometryReader { proxy in
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.dealtCards) { cardData in
+                    ForEach(dealtCards) { cardData in
                         CardView(card: cardData, width: proxy.size.width / CGFloat(columns.count + 1))
                             .matchedGeometryEffect(id: cardData.id, in: cardsNameSpace)
                             .transition(AnyTransition.opacity)
@@ -43,7 +46,7 @@ struct GameView: View {
     
     private var undealtCardsView: some View {
         ZStack {
-            ForEach(viewModel.undealtCards) { cardData in
+            ForEach(undealtCards) { cardData in
                 CardView(card: cardData, width: deckCardWidth)
                     .matchedGeometryEffect(id: cardData.id, in: cardsNameSpace)
                     .transition(AnyTransition.opacity)
@@ -57,21 +60,29 @@ struct GameView: View {
     private var buttonsView: some View {
         VStack {
             dealCardsButton
-            restartButton
+            newGameButton
         }
     }
     
-    private var restartButton: some View {
-        Button("Заново") {
-            withAnimation { viewModel.startNewGame() }
+    private var newGameButton: some View {
+        Button("Новая Игра") {
+            withAnimation {
+                viewModel.createNewGame()
+                viewModel.allCards.forEach { undealtCardIDs.append($0.id) }
+            }
         }
     }
     
     private var dealCardsButton: some View {
-        Button("Раздать") {
-            for card in viewModel.undealtCards {
-                withAnimation(dealAnimation(for: card)) {
-                    viewModel.deal(cardID: card.id)
+        VStack {
+            
+            if !viewModel.hasStartedGame {
+                Button("Раздать") {
+                    for card in undealtCards {
+                        withAnimation(dealAnimation(for: card)) {
+                            deal(cardID: card.id)
+                        }
+                    }
                 }
             }
         }
@@ -139,9 +150,59 @@ struct GameView: View {
         return offset
     }
     
+    private func shuffleDealtCards() {
+        if undealtCards.count == 0 {
+            Task {
+                try await Task.sleep(nanoseconds: UInt64(200_000_000 * viewModel.totalCardCount))
+                
+                await MainActor.run {
+                    viewModel.startGame()
+                }
+                
+                try await Task.sleep(nanoseconds: shuffleDelay)
+                
+                await MainActor.run {
+                    withAnimation(.easeInOut(duration: shuffleDuration)) {
+                        viewModel.shuffle()
+                    }
+                }
+                
+                try await Task.sleep(nanoseconds: shuffleDelay)
+                
+                await MainActor.run {
+                    withAnimation(.easeInOut(duration: shuffleDuration)) {
+                        viewModel.shuffle()
+                    }
+                }
+                
+                try await Task.sleep(nanoseconds: shuffleDelay)
+                
+                await MainActor.run {
+                    withAnimation(.easeInOut(duration: shuffleDuration)) {
+                        viewModel.shuffle()
+                    }
+                }
+            }
+        }
+    }
+    
+    func deal(cardID: UUID) {
+        undealtCardIDs.removeAll(where: { $0 == cardID })
+    }
+    
+    var dealtCards: [CardModel] {
+        viewModel.allCards.filter { card in !undealtCardIDs.contains(where: { $0 == card.id })}
+    }
+    
+    var undealtCards: [CardModel] {
+        viewModel.allCards.filter { card in undealtCardIDs.contains(where: { $0 == card.id })}
+    }
+    
     private let totalDealDuration: Double = 2
     private let dealDuration: Double = 0.5
     private let deckCardWidth: CGFloat = 50
+    private var shuffleDuration: CGFloat { 0.6 }
+    private var shuffleDelay: UInt64 { 500_000_000 }
 }
 
 #Preview {

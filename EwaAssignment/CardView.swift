@@ -125,7 +125,7 @@ private extension CardView {
         
         var body: some View {
             VStack(spacing: 80) {
-                ForEach(viewModel.dealtCards) { cardData in
+                ForEach(viewModel.allCards) { cardData in
                     CardView(card: cardData, width: 150)
                         .onTapGesture {
                             viewModel.flip(cardID: cardData.id)
