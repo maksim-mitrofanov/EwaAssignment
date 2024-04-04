@@ -10,6 +10,7 @@ import Foundation
 
 class GameViewModel: ObservableObject {
     @Published private var game: GameModel
+    @Published private(set) var gameState: GameModel.GameState?
     @Published private(set) var hasStartedGame: Bool = false
     
     private let cardCount: Int
@@ -17,10 +18,16 @@ class GameViewModel: ObservableObject {
     init(cardCount: Int) {
         self.cardCount = cardCount
         self.game = GameModel(cardCount: cardCount)
+        self.gameState = nil
     }
     
     func flip(cardID: UUID) {
-        game.flip(cardID: cardID)
+        gameState = game.flip(cardID: cardID)
+    }
+    
+    func prepareForNextFlip() {
+        game.flipAllCards()
+        gameState = .standard
     }
     
     func shuffle() {
@@ -29,11 +36,12 @@ class GameViewModel: ObservableObject {
     
     func createNewGame() {
         game = GameModel(cardCount: totalCardCount)
+        hasStartedGame = false
     }
     
     func startGame() {
         if !hasStartedGame {
-            game.startGame()
+            game.flipAllCards()
             hasStartedGame = true
         }
     }

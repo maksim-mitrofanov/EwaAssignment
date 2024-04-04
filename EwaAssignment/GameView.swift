@@ -17,13 +17,61 @@ struct GameView: View {
         
     var body: some View {
         VStack {
+            gameStateView()
             cardsGridView
+                .disabled(!canInteractWithCardsGrid)
             undealtCardsView
             buttonsView
         }
         .padding(.horizontal)
         .padding(.top, 100)
         .onChange(of: undealtCardIDs.count) { shuffleDealtCards() }
+        .onChange(of: viewModel.gameState) { prepareForNextFlip() }
+        .onAppear { startNewGame() }
+    }
+    
+    var canInteractWithCardsGrid: Bool {
+        switch viewModel.gameState {
+        case .match:
+            return false
+        case .miss:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    @ViewBuilder
+    private func gameStateView() -> some View {
+        switch viewModel.gameState {
+        case .match:
+            Text("Match")
+                .foregroundStyle(Color.green)
+                .bold()
+        case .miss:
+            Text("Miss")
+                .foregroundStyle(Color.red)
+                .bold()
+        case .standard:
+            Text("Choose card")
+                .foregroundStyle(Color.gray)
+                .bold()
+        default: Text("")
+        }
+    }
+    
+    private func prepareForNextFlip() {
+        if viewModel.gameState == .match || viewModel.gameState == .miss {
+            Task {
+                try await Task.sleep(nanoseconds: UInt64(2_000_000_000))
+                
+                await MainActor.run {
+                    withAnimation {
+                        viewModel.prepareForNextFlip()
+                    }
+                }
+            }
+        }
     }
     
     private var cardsGridView: some View {
@@ -66,16 +114,19 @@ struct GameView: View {
     
     private var newGameButton: some View {
         Button("Новая Игра") {
-            withAnimation {
-                viewModel.createNewGame()
-                viewModel.allCards.forEach { undealtCardIDs.append($0.id) }
-            }
+            startNewGame()
+        }
+    }
+    
+    private func startNewGame() {
+        withAnimation {
+            viewModel.createNewGame()
+            viewModel.allCards.forEach { undealtCardIDs.append($0.id) }
         }
     }
     
     private var dealCardsButton: some View {
         VStack {
-            
             if !viewModel.hasStartedGame {
                 Button("Раздать") {
                     for card in undealtCards {

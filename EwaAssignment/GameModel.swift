@@ -20,16 +20,14 @@ struct GameModel {
         
         self.cards = cardModels
     }
-    
-    private var indexOfTheOneAndOnlyFaceUpCard: Int? = nil
-    
-    mutating func flip(cardID: UUID) {
+        
+    mutating func flip(cardID: UUID) -> GameState {
+        let faceUpCardIndicies = cards.indices.filter { cards[$0].isFaceUp == true }
         
         // Has no face up cards
-        if indexOfTheOneAndOnlyFaceUpCard == .none {
+        if faceUpCardIndicies.count == 0 {
             if let cardIndex = cards.firstIndex(where: { $0.id == cardID }) {
                 cards[cardIndex].isFaceUp.toggle()
-                indexOfTheOneAndOnlyFaceUpCard = cardIndex
             }
         }
         
@@ -43,19 +41,29 @@ struct GameModel {
                 let secondFaceUpCard = cards[faceUpCardIndicies[1]]
                 
                 if firstFaceUpCard.symbolName == secondFaceUpCard.symbolName {
-                    
+                    return .match
                 } else {
-                    
+                    return .miss
                 }
             }
         }
+        
+        return .standard
     }
     
-    mutating func startGame() {
+    mutating func flipAllCards() {
         cards.indices.forEach { cards[$0].isFaceUp = false }
     }
-    
+        
     mutating func shuffleCards() {
         cards.shuffle()
+    }
+}
+
+extension GameModel {
+    enum GameState {
+        case match
+        case miss
+        case standard
     }
 }
