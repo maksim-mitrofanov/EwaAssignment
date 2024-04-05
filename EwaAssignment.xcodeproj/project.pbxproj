@@ -13,6 +13,11 @@
 		B54FC3132BBFEF5900E07838 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B54FC3122BBFEF5900E07838 /* ConfettiSwiftUI */; };
 		B54FC3152BBFEF6000E07838 /* SFSymbolsMacro in Frameworks */ = {isa = PBXBuildFile; productRef = B54FC3142BBFEF6000E07838 /* SFSymbolsMacro */; };
 		B54FC3172BBFF28600E07838 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FC3162BBFF28600E07838 /* Assembly.swift */; };
+		B54FC31F2BBFF45600E07838 /* EwaAssignmentGameModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FC31E2BBFF45600E07838 /* EwaAssignmentGameModelTests.swift */; };
+		B54FC3252BBFF49600E07838 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5075C2D2BBF50480045F192 /* Protocols.swift */; };
+		B54FC3262BBFF4C500E07838 /* StandardGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9308B2BBD915400888073 /* StandardGameModel.swift */; };
+		B54FC3272BBFF54500E07838 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009E62BBD720900563279 /* CardModel.swift */; };
+		B54FC3282BBFF56400E07838 /* CardSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009EB2BBD74AF00563279 /* CardSymbols.swift */; };
 		B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */; };
 		B598E03D2BBC5A9000DF10EC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03C2BBC5A9000DF10EC /* GameView.swift */; };
 		B598E03F2BBC5A9000DF10EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E03E2BBC5A9000DF10EC /* Assets.xcassets */; };
@@ -22,11 +27,23 @@
 		B5A9308C2BBD915400888073 /* StandardGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9308B2BBD915400888073 /* StandardGameModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B54FC3202BBFF45600E07838 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B598E02F2BBC5A8F00DF10EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B598E0362BBC5A9000DF10EC;
+			remoteInfo = EwaAssignment;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B5075C2D2BBF50480045F192 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		B54009E62BBD720900563279 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		B54009EB2BBD74AF00563279 /* CardSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSymbols.swift; sourceTree = "<group>"; };
 		B54FC3162BBFF28600E07838 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		B54FC31C2BBFF45600E07838 /* EwaAssignmentBasicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwaAssignmentBasicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B54FC31E2BBFF45600E07838 /* EwaAssignmentGameModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwaAssignmentGameModelTests.swift; sourceTree = "<group>"; };
 		B598E0372BBC5A9000DF10EC /* EwaAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EwaAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwaAssignmentApp.swift; sourceTree = "<group>"; };
 		B598E03C2BBC5A9000DF10EC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -38,6 +55,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B54FC3192BBFF45600E07838 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E0342BBC5A9000DF10EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,10 +74,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B54FC31D2BBFF45600E07838 /* EwaAssignmentBasicsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B54FC31E2BBFF45600E07838 /* EwaAssignmentGameModelTests.swift */,
+			);
+			path = EwaAssignmentBasicsTests;
+			sourceTree = "<group>";
+		};
 		B598E02E2BBC5A8F00DF10EC = {
 			isa = PBXGroup;
 			children = (
 				B598E0392BBC5A9000DF10EC /* EwaAssignment */,
+				B54FC31D2BBFF45600E07838 /* EwaAssignmentBasicsTests */,
 				B598E0382BBC5A9000DF10EC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				B598E0372BBC5A9000DF10EC /* EwaAssignment.app */,
+				B54FC31C2BBFF45600E07838 /* EwaAssignmentBasicsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +103,7 @@
 		B598E0392BBC5A9000DF10EC /* EwaAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				B54FC3162BBFF28600E07838 /* Assembly.swift */,
 				B5075C2D2BBF50480045F192 /* Protocols.swift */,
 				B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */,
 				B5A930872BBD777600888073 /* CardView.swift */,
@@ -79,7 +114,6 @@
 				B5A930892BBD8D9300888073 /* StandardViewModel.swift */,
 				B598E03E2BBC5A9000DF10EC /* Assets.xcassets */,
 				B598E0402BBC5A9000DF10EC /* Preview Content */,
-				B54FC3162BBFF28600E07838 /* Assembly.swift */,
 			);
 			path = EwaAssignment;
 			sourceTree = "<group>";
@@ -95,6 +129,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B54FC31B2BBFF45600E07838 /* EwaAssignmentBasicsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B54FC3222BBFF45600E07838 /* Build configuration list for PBXNativeTarget "EwaAssignmentBasicsTests" */;
+			buildPhases = (
+				B54FC3182BBFF45600E07838 /* Sources */,
+				B54FC3192BBFF45600E07838 /* Frameworks */,
+				B54FC31A2BBFF45600E07838 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B54FC3212BBFF45600E07838 /* PBXTargetDependency */,
+			);
+			name = EwaAssignmentBasicsTests;
+			productName = EwaAssignmentBasicsTests;
+			productReference = B54FC31C2BBFF45600E07838 /* EwaAssignmentBasicsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B598E0362BBC5A9000DF10EC /* EwaAssignment */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B598E0452BBC5A9000DF10EC /* Build configuration list for PBXNativeTarget "EwaAssignment" */;
@@ -126,6 +178,10 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					B54FC31B2BBFF45600E07838 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = B598E0362BBC5A9000DF10EC;
+					};
 					B598E0362BBC5A9000DF10EC = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -149,11 +205,19 @@
 			projectRoot = "";
 			targets = (
 				B598E0362BBC5A9000DF10EC /* EwaAssignment */,
+				B54FC31B2BBFF45600E07838 /* EwaAssignmentBasicsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B54FC31A2BBFF45600E07838 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E0352BBC5A9000DF10EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,6 +230,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B54FC3182BBFF45600E07838 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B54FC3262BBFF4C500E07838 /* StandardGameModel.swift in Sources */,
+				B54FC3272BBFF54500E07838 /* CardModel.swift in Sources */,
+				B54FC31F2BBFF45600E07838 /* EwaAssignmentGameModelTests.swift in Sources */,
+				B54FC3282BBFF56400E07838 /* CardSymbols.swift in Sources */,
+				B54FC3252BBFF49600E07838 /* Protocols.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E0332BBC5A9000DF10EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,7 +260,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B54FC3212BBFF45600E07838 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B598E0362BBC5A9000DF10EC /* EwaAssignment */;
+			targetProxy = B54FC3202BBFF45600E07838 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B54FC3232BBFF45600E07838 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q3P95MDH6Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksimMitrofanov.EwaAssignmentBasicsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EwaAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EwaAssignment";
+			};
+			name = Debug;
+		};
+		B54FC3242BBFF45600E07838 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q3P95MDH6Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksimMitrofanov.EwaAssignmentBasicsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EwaAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EwaAssignment";
+			};
+			name = Release;
+		};
 		B598E0432BBC5A9000DF10EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,6 +485,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B54FC3222BBFF45600E07838 /* Build configuration list for PBXNativeTarget "EwaAssignmentBasicsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B54FC3232BBFF45600E07838 /* Debug */,
+				B54FC3242BBFF45600E07838 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B598E0322BBC5A9000DF10EC /* Build configuration list for PBXProject "EwaAssignment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

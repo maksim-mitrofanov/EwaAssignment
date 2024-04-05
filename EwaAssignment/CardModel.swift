@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardModel: Identifiable {
+struct CardModel: Identifiable, Equatable {
     let symbolName: String
     var isFaceUp: Bool
     var isMatched: Bool

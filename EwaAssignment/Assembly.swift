@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// ToDo: Create other game types
 enum Assembly {
     case standardGame
     
