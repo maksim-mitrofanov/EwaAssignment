@@ -12,6 +12,7 @@
 		B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54009EB2BBD74AF00563279 /* CardSymbols.swift */; };
 		B54FC3132BBFEF5900E07838 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B54FC3122BBFEF5900E07838 /* ConfettiSwiftUI */; };
 		B54FC3152BBFEF6000E07838 /* SFSymbolsMacro in Frameworks */ = {isa = PBXBuildFile; productRef = B54FC3142BBFEF6000E07838 /* SFSymbolsMacro */; };
+		B54FC3172BBFF28600E07838 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FC3162BBFF28600E07838 /* Assembly.swift */; };
 		B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */; };
 		B598E03D2BBC5A9000DF10EC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E03C2BBC5A9000DF10EC /* GameView.swift */; };
 		B598E03F2BBC5A9000DF10EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E03E2BBC5A9000DF10EC /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		B5075C2D2BBF50480045F192 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		B54009E62BBD720900563279 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		B54009EB2BBD74AF00563279 /* CardSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSymbols.swift; sourceTree = "<group>"; };
+		B54FC3162BBFF28600E07838 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		B598E0372BBC5A9000DF10EC /* EwaAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EwaAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598E03A2BBC5A9000DF10EC /* EwaAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwaAssignmentApp.swift; sourceTree = "<group>"; };
 		B598E03C2BBC5A9000DF10EC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				B5A930892BBD8D9300888073 /* StandardViewModel.swift */,
 				B598E03E2BBC5A9000DF10EC /* Assets.xcassets */,
 				B598E0402BBC5A9000DF10EC /* Preview Content */,
+				B54FC3162BBFF28600E07838 /* Assembly.swift */,
 			);
 			path = EwaAssignment;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				B598E03D2BBC5A9000DF10EC /* GameView.swift in Sources */,
 				B598E03B2BBC5A9000DF10EC /* EwaAssignmentApp.swift in Sources */,
 				B54009E72BBD720900563279 /* CardModel.swift in Sources */,
+				B54FC3172BBFF28600E07838 /* Assembly.swift in Sources */,
 				B54009EC2BBD74AF00563279 /* CardSymbols.swift in Sources */,
 				B5A9308C2BBD915400888073 /* StandardGameModel.swift in Sources */,
 				B5A930882BBD777600888073 /* CardView.swift in Sources */,

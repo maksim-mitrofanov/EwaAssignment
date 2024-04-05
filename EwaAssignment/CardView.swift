@@ -130,7 +130,7 @@ private extension CardView {
     }
 }
 
-#Preview("4 cards") {
+#Preview {
     struct PreviewData: View {
         @StateObject var viewModel = StandardViewModel()
         

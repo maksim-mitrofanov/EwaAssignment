@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct EwaAssignmentApp: App {
+struct EwaAssignmentApp: App {    
     var body: some Scene {
         WindowGroup {
-            GameView(viewModel: StandardViewModel(game: StandardGameModel(cardCount: 16)))
+            Assembly.standardGame.create(cardCount: 14)
         }
     }
 }
