@@ -11,7 +11,7 @@ import SwiftUI
 struct EwaAssignmentApp: App {    
     var body: some Scene {
         WindowGroup {
-            Assembly.standardGame.create(cardCount: 14)
+            Assembly.standardGame.create(cardCount: 12)
         }
     }
 }
