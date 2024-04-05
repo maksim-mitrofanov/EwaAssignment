@@ -11,7 +11,7 @@ import SwiftUI
 struct EwaAssignmentApp: App {
     var body: some Scene {
         WindowGroup {
-            GameView(viewModel: StandardViewModel(cardCount: 12))
+            GameView(viewModel: StandardViewModel(game: StandardGameModel(cardCount: 16)))
         }
     }
 }

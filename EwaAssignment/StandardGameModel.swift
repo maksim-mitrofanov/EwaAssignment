@@ -1,5 +1,5 @@
 //
-//  GameModel.swift
+//  StandardGameModel.swift
 //  EwaAssignment
 //
 //  Created by  Maksim on 03.04.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameModel: CardGameModel {
+struct StandardGameModel: GameModelType {
     private(set) var state: GameState {
         didSet {
             stateChanged()
@@ -45,7 +45,7 @@ struct GameModel: CardGameModel {
     }
 }
 
-extension GameModel {
+extension StandardGameModel {
     private mutating func stateChanged() {
         switch self.state {
         case .oneCardFaceUp(index: let index):
@@ -103,7 +103,7 @@ extension GameModel {
 }
 
 // State machine helper functions
-private extension GameModel {
+private extension StandardGameModel {
     func getIndex(for cardID: UUID) -> Int? {
         cards.firstIndex { $0.id == cardID }
     }

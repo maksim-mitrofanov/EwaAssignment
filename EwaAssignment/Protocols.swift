@@ -9,13 +9,13 @@ import SwiftUI
 import Foundation
 
 // ToDo: create a protocol for CardData
-protocol CardGameViewModel {
+protocol GameViewModelType {
     var allCards: [CardModel] { get }
     var totalCardCount: Int { get }
     var gameState: GameState { get }
     var unmatchedPairsCount: Int { get }
     
-    init(cardCount: Int)
+    init(game: GameModelType)
     
     func startGame()
     func createNewGame()
@@ -24,16 +24,13 @@ protocol CardGameViewModel {
     func flip(cardID: UUID)
 }
 
-protocol CardGameModel {
-    associatedtype State
-    associatedtype Action
-    
-    var state: State { get }
+protocol GameModelType {
+    var state: GameState { get }
     var cards: [CardModel] { get }
     
     init(cardCount: Int)
     
-    mutating func receive(action: Action)
+    mutating func receive(action: GameAction)
 }
 
 enum GameState: Equatable {

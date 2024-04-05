@@ -10,7 +10,7 @@ import ConfettiSwiftUI
 
 // TODO: Fix card Z Index.
 
-struct GameView<ViewModelType: CardGameViewModel>: View where ViewModelType: ObservableObject{
+struct GameView<ViewModelType: GameViewModelType>: View where ViewModelType: ObservableObject{
     @ObservedObject var viewModel: ViewModelType
     
     @State private var undealtCardIDs = [UUID]()
@@ -241,5 +241,5 @@ struct GameView<ViewModelType: CardGameViewModel>: View where ViewModelType: Obs
 }
 
 #Preview {
-    GameView(viewModel: StandardViewModel(cardCount: 12))
+    GameView(viewModel: StandardViewModel())
 }

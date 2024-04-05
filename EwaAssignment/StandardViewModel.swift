@@ -8,14 +8,11 @@
 import SwiftUI
 import Foundation
 
-class StandardViewModel: CardGameViewModel, ObservableObject {
-    @Published private var game: GameModel
+final class StandardViewModel: GameViewModelType, ObservableObject {
+    @Published private var game: GameModelType
     
-    private let cardCount: Int
-    
-    required init(cardCount: Int) {
-        self.cardCount = cardCount
-        self.game = GameModel(cardCount: cardCount)
+    init(game: any GameModelType = StandardGameModel(cardCount: 12)) {
+        self.game = game
     }
     
     func flip(cardID: UUID) {
@@ -41,7 +38,7 @@ class StandardViewModel: CardGameViewModel, ObservableObject {
     }
     
     func createNewGame() {
-        game = GameModel(cardCount: totalCardCount)
+        game = StandardGameModel(cardCount: totalCardCount)
     }
     
     func startGame() {

@@ -132,7 +132,7 @@ private extension CardView {
 
 #Preview("4 cards") {
     struct PreviewData: View {
-        @StateObject var viewModel = StandardViewModel(cardCount: 2)
+        @StateObject var viewModel = StandardViewModel()
         
         var body: some View {
             VStack(spacing: 80) {
